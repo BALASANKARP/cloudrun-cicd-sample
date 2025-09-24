@@ -1,13 +1,8 @@
-from flask import Flask
+# main.py
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
-def hello():
-    return "Hello from Cloud Run + GitHub Actions!"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
-
-
-    # For more information, see https://cloud.google.com/run/docs/quickstarts/build-and-deployS
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Cloud Run CI/CD!"}

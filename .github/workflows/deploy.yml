@@ -1,6 +1,5 @@
 name: Deploy to Cloud Run
 
-# Updated workflow to trigger again
 on:
   push:
     branches: [ dev ]  # Trigger only on pushes to dev branch
@@ -10,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Checkout the repo
+    # 1️⃣ Checkout repo
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -25,7 +24,7 @@ jobs:
       run: |
         gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
 
-    # 4️⃣ Build Docker image and push to Artifact Registry
+    # 4️⃣ Build Docker image and push
     - name: Build and Push Docker image
       run: |
         IMAGE=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/sample-repo/${{ secrets.SERVICE_NAME }}:${{ github.sha }}
