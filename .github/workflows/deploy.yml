@@ -1,5 +1,6 @@
 name: Deploy to Cloud Run
 
+# Updated workflow to trigger again
 on:
   push:
     branches: [ dev ]  # Trigger only on pushes to dev branch
@@ -22,7 +23,7 @@ jobs:
     # 3️⃣ Configure Docker to push to Artifact Registry
     - name: Configure Docker
       run: |
-        gcloud auth configure-docker ${REGION}-docker.pkg.dev
+        gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
 
     # 4️⃣ Build Docker image and push to Artifact Registry
     - name: Build and Push Docker image
