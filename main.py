@@ -6,3 +6,6 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {"message": "Hello from Cloud Run CI/CD!"}
+
+
+# Additional files to support the FastAPI applicationS
