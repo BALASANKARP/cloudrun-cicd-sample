@@ -1,9 +1,6 @@
-FROM python:3.10-slim
-
-WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-
-COPY . .
-
-CMD exec gunicorn --bind :8080 --workers 1 --threads 8 main:app
+- name: Build and Push Docker image
+  run: |
+    IMAGE=${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/sample-repo/${{ secrets.SERVICE_NAME }}:${{ github.sha }}
+    docker build -t $IMAGE .
+    docker push $IMAGE
+    echo "IMAGE=$IMAGE" >> $GITHUB_ENV
