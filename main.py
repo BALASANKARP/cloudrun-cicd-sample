@@ -8,3 +8,6 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
+
+    # For more information, see https://cloud.google.com/run/docs/quickstarts/build-and-deployS
